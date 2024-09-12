@@ -86,8 +86,6 @@ const saveUserForm = (event) => {
     }
     return true;
   }
-
-  // Create new entry
   const entry = {
     name,
     email,
@@ -95,16 +93,9 @@ const saveUserForm = (event) => {
     dob,
     acceptedTermsAndconditions: acceptedTermsAndConditions,
   };
-
-  // Add entry to userEntries array
   userEntries.push(entry);
-  // Store updated entries in localStorage
   localStorage.setItem("user-entries", JSON.stringify(userEntries));
-
-  // Refresh table to show new entry
   displayEntries();
-
-  // Reset form after submission
   userForm.reset();
 };
 
