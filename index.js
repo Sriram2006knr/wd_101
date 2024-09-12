@@ -1,4 +1,3 @@
-// Retrieve form and entries from localStorage
 let userForm = document.getElementById("user-form");
 
 const retrieveEntries = () => {
@@ -12,12 +11,8 @@ const retrieveEntries = () => {
 };
 
 let userEntries = retrieveEntries();
-
-// Display entries in the table
 const displayEntries = () => {
   const entries = retrieveEntries();
-  
-  // If no entries, create table headers only
   const tableEntries = entries.length > 0
     ? entries
       .map((entry) => {
@@ -47,8 +42,6 @@ const displayEntries = () => {
   let details = document.getElementById("user-entries");
   details.innerHTML = table;
 };
-
-// Save user form data
 const saveUserForm = (event) => {
   event.preventDefault();
 
@@ -57,15 +50,11 @@ const saveUserForm = (event) => {
   const password = document.getElementById("password").value;
   const dob = document.getElementById("dob").value;
   const acceptedTermsAndConditions = document.getElementById("acceptTerms").checked;
-
-  // Email validation
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailPattern.test(email)) {
     alert("Please enter a valid email address.");
     return;
   }
-
-  // Validate DOB (Age between 18 and 55)
   const isValidDob = validateDob(dob);
   if (!isValidDob) {
     return;
@@ -85,8 +74,6 @@ const saveUserForm = (event) => {
     }
     return true;
   }
-
-  // Create an entry
   const entry = {
     name,
     email,
@@ -94,16 +81,12 @@ const saveUserForm = (event) => {
     dob,
     acceptedTermsAndconditions: acceptedTermsAndConditions,
   };
-
-  // Save the entry to localStorage
   userEntries.push(entry);
   localStorage.setItem("user-entries", JSON.stringify(userEntries));
-
-  // Refresh the display
   displayEntries();
 };
 
-// Event listener for form submission
+ displayEntries();
 userForm.addEventListener("submit", saveUserForm);
 
 // Display existing entries on page load
