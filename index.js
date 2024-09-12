@@ -90,7 +90,6 @@ const saveUserForm = (event) => {
 
   userEntries.push(entry);
   localStorage.setItem("user-entries", JSON.stringify(userEntries));
-  displayEntries();
 };
 userForm.addEventListener("submit", saveUserForm);
 displayEntries();
