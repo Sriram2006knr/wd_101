@@ -1,5 +1,7 @@
+// Retrieve form and entries from localStorage
 let userForm = document.getElementById("user-form");
 
+// Function to retrieve entries from localStorage
 const retrieveEntries = () => {
   let entries = localStorage.getItem("user-entries");
   if (entries) {
@@ -10,38 +12,45 @@ const retrieveEntries = () => {
   return entries;
 };
 
+// Initialize user entries
 let userEntries = retrieveEntries();
+
+// Display table with headers (even if no entries exist yet)
 const displayEntries = () => {
   const entries = retrieveEntries();
-  const tableEntries = entries.length > 0
-    ? entries
-      .map((entry) => {
-        const nameCell = `<td class='border px-4 py-2'>${entry.name}</td>`;
-        const emailCell = `<td class='border px-4 py-2'>${entry.email}</td>`;
-        const passwordCell = `<td class='border px-4 py-2'>${entry.password}</td>`;
-        const dobCell = `<td class='border px-4 py-2'>${entry.dob}</td>`;
-        const acceptTermsCell = `<td class='border px-4 py-2'>${entry.acceptedTermsAndconditions ? 'Yes' : 'No'}</td>`;
-        const row = `<tr>${nameCell} ${emailCell} ${passwordCell} ${dobCell} ${acceptTermsCell}</tr>`;
-        return row;
-      })
-      .join("\n")
-    : '';
 
+  const tableEntries = entries
+    .map((entry) => {
+      const nameCell = `<td class='border px-4 py-2'>${entry.name}</td>`;
+      const emailCell = `<td class='border px-4 py-2'>${entry.email}</td>`;
+      const passwordCell = `<td class='border px-4 py-2'>${entry.password}</td>`;
+      const dobCell = `<td class='border px-4 py-2'>${entry.dob}</td>`;
+      const acceptTermsCell = `<td class='border px-4 py-2'>${entry.acceptedTermsAndconditions ? 'Yes' : 'No'}</td>`;
+      return `<tr>${nameCell} ${emailCell} ${passwordCell} ${dobCell} ${acceptTermsCell}</tr>`;
+    })
+    .join("\n");
+
+  // Add headers even if there are no entries
   const table = `
     <table class="table-auto w-full">
-      <tr>
-        <th class="px-4 py-2">Name</th>
-        <th class="px-4 py-2">Email</th>
-        <th class="px-4 py-2">Password</th>
-        <th class="px-4 py-2">Dob</th>
-        <th class="px-4 py-2">Accepted Terms</th>
-      </tr>
-      ${tableEntries}
+      <thead>
+        <tr>
+          <th class="px-4 py-2">Name</th>
+          <th class="px-4 py-2">Email</th>
+          <th class="px-4 py-2">Password</th>
+          <th class="px-4 py-2">Dob</th>
+          <th class="px-4 py-2">Accepted Terms</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${tableEntries || ''}
+      </tbody>
     </table>`;
 
-  let details = document.getElementById("user-entries");
-  details.innerHTML = table;
+  document.getElementById("user-entries").innerHTML = table;
 };
+
+// Function to save user form data
 const saveUserForm = (event) => {
   event.preventDefault();
 
@@ -50,13 +59,16 @@ const saveUserForm = (event) => {
   const password = document.getElementById("password").value;
   const dob = document.getElementById("dob").value;
   const acceptedTermsAndConditions = document.getElementById("acceptTerms").checked;
+
+  // Email validation
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailPattern.test(email)) {
     alert("Please enter a valid email address.");
     return;
   }
-  const isValidDob = validateDob(dob);
-  if (!isValidDob) {
+
+  // Age validation (between 18 and 55)
+  if (!validateDob(dob)) {
     return;
   }
 
@@ -74,6 +86,8 @@ const saveUserForm = (event) => {
     }
     return true;
   }
+
+  // Create new entry
   const entry = {
     name,
     email,
@@ -81,12 +95,20 @@ const saveUserForm = (event) => {
     dob,
     acceptedTermsAndconditions: acceptedTermsAndConditions,
   };
+
+  // Add entry to userEntries array
   userEntries.push(entry);
+  // Store updated entries in localStorage
   localStorage.setItem("user-entries", JSON.stringify(userEntries));
+
+  // Refresh table to show new entry
   displayEntries();
+
+  // Reset form after submission
+  userForm.reset();
 };
 
- displayEntries();
+// Event listener for form submission
 userForm.addEventListener("submit", saveUserForm);
 
 // Display existing entries on page load
