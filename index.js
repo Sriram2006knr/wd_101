@@ -1,7 +1,5 @@
-// Retrieve form and entries from localStorage
-let userForm = document.getElementById("user-form");
 
-// Function to retrieve entries from localStorage
+let userForm = document.getElementById("user-form");
 const retrieveEntries = () => {
   let entries = localStorage.getItem("user-entries");
   if (entries) {
@@ -87,7 +85,7 @@ const saveUserForm = (event) => {
     email,
     password,
     dob,
-    acceptedTermsAndconditions: acceptedTermsAndConditions,
+    acceptedTermsAndConditions,
   };
   userEntries.push(entry);
   localStorage.setItem("user-entries", JSON.stringify(userEntries));
