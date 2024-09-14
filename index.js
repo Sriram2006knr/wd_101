@@ -87,6 +87,7 @@ const saveUserForm = (event) => {
     dob,
     acceptedTermsAndConditions,
   };
+let userEntries = retrieveEntries();
   userEntries.push(entry);
   localStorage.setItem("user-entries", JSON.stringify(userEntries));
   displayEntries();
