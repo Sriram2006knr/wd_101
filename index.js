@@ -19,35 +19,31 @@ let userEntries = retrieveEntries();
 const displayEntries = () => {
   const entries = retrieveEntries();
 
-  const tableEntries = entries
-    .map((entry) => {
+  const tableEntries = entries .map((entry) => {
       const nameCell = `<td class='border px-4 py-2'>${entry.name}</td>`;
       const emailCell = `<td class='border px-4 py-2'>${entry.email}</td>`;
       const passwordCell = `<td class='border px-4 py-2'>${entry.password}</td>`;
       const dobCell = `<td class='border px-4 py-2'>${entry.dob}</td>`;
       const acceptTermsCell = `<td class='border px-4 py-2'>${entry.acceptedTermsAndconditions ? 'Yes' : 'No'}</td>`;
-      return `<tr>${nameCell} ${emailCell} ${passwordCell} ${dobCell} ${acceptTermsCell}</tr>`;
-    })
+      const row = `<tr>${nameCell} ${emailCell} ${passwordCell} ${dobCell} ${acceptTermsCell}</tr>`;
+   return row;
+ })
     .join("\n");
 
   // Add headers even if there are no entries
-  const table = `
-    <table class="table-auto w-full">
-      <thead>
+  const table = `<table class="table-auto w-full">
         <tr>
           <th class="px-4 py-2">Name</th>
           <th class="px-4 py-2">Email</th>
           <th class="px-4 py-2">Password</th>
           <th class="px-4 py-2">Dob</th>
           <th class="px-4 py-2">Accepted Terms</th>
-        </tr>
-      </thead>
-      <tbody>
-        ${tableEntries || ''}
-      </tbody>
+        </tr>${tableEntries}
     </table>`;
 
-  document.getElementById("user-entries").innerHTML = table;
+  let details=document.getElementById("user-entries");
+details.innerHTML = table;
+
 };
 
 // Function to save user form data
@@ -96,11 +92,7 @@ const saveUserForm = (event) => {
   userEntries.push(entry);
   localStorage.setItem("user-entries", JSON.stringify(userEntries));
   displayEntries();
-  userForm.reset();
 };
 
-// Event listener for form submission
 userForm.addEventListener("submit", saveUserForm);
-
-// Display existing entries on page load
 displayEntries();
