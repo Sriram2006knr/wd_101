@@ -22,11 +22,10 @@ const displayEntries = () => {
       const emailCell = `<td class='border px-4 py-2'>${entry.email}</td>`;
       const passwordCell = `<td class='border px-4 py-2'>${entry.password}</td>`;
       const dobCell = `<td class='border px-4 py-2'>${entry.dob}</td>`;
-      const acceptTermsCell = `<td class='border px-4 py-2'>${entry.acceptedTermsAndconditions ? 'Yes' : 'No'}</td>`;
+      const acceptTermsCell = `<td class='border px-4 py-2'>${entry.acceptedTermsAndconditions}</td>`;
       const row = `<tr>${nameCell} ${emailCell} ${passwordCell} ${dobCell} ${acceptTermsCell}</tr>`;
    return row;
- })
-    .join("\n");
+ }).join("\n");
 
   // Add headers even if there are no entries
   const table = `<table class="table-auto w-full">
@@ -35,7 +34,7 @@ const displayEntries = () => {
           <th class="px-4 py-2">Email</th>
           <th class="px-4 py-2">Password</th>
           <th class="px-4 py-2">Dob</th>
-          <th class="px-4 py-2">Accepted Terms</th>
+          <th class="px-4 py-2">Accepted Terms?</th>
         </tr>${tableEntries}
     </table>`;
 
