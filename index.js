@@ -2,18 +2,9 @@
 let userForm = document.getElementById("user-form");
 const retrieveEntries = () => {
   let entries = localStorage.getItem("user-entries");
-  if (entries) {
-    entries = JSON.parse(entries);
-  } else {
-    entries = [];
-  }
-  return entries;
+  return entries ? JSON.parse(entries) : [];
 };
-
-// Initialize user entries
 let userEntries = retrieveEntries();
-
-// Display table with headers (even if no entries exist yet)
 const displayEntries = () => {
   const entries = retrieveEntries();
 
@@ -25,8 +16,6 @@ const displayEntries = () => {
       const acceptTermsCell = `<td class='border px-4 py-2'>${entry.acceptedTermsAndconditions ? 'Yes':'No'}</td>`;
      return `<tr>${nameCell} ${emailCell} ${passwordCell} ${dobCell} ${acceptTermsCell}</tr>`;
  }).join("\n");
-
-  // Add headers even if there are no entries
   const table = `<table class="table-auto w-full">
         <tr>
           <th class="px-4 py-2">Name</th>
@@ -40,8 +29,6 @@ const displayEntries = () => {
 document.getElementById("user-entries").innerHTML = table;
 
 };
-
-// Function to save user form data
 const saveUserForm = (event) => {
   event.preventDefault();
 
@@ -50,15 +37,11 @@ const saveUserForm = (event) => {
   const password = document.getElementById("password").value;
   const dob = document.getElementById("dob").value;
   const acceptedTermsAndConditions = document.getElementById("acceptTerms").checked;
-
-  // Email validation
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailPattern.test(email)) {
     alert("Please enter a valid email address.");
     return;
   }
-
-  // Age validation (between 18 and 55)
   if (!validateDob(dob)) {
     return;
   }
@@ -84,7 +67,6 @@ const saveUserForm = (event) => {
     dob,
     acceptedTermsAndConditions,
   };
-let userEntries = retrieveEntries();
   userEntries.push(entry);
   localStorage.setItem("user-entries", JSON.stringify(userEntries));
   displayEntries();
