@@ -23,8 +23,7 @@ const displayEntries = () => {
       const passwordCell = `<td class='border px-4 py-2'>${entry.password}</td>`;
       const dobCell = `<td class='border px-4 py-2'>${entry.dob}</td>`;
       const acceptTermsCell = `<td class='border px-4 py-2'>${entry.acceptedTermsAndconditions ? 'Yes':'No'}</td>`;
-      const row = `<tr>${nameCell} ${emailCell} ${passwordCell} ${dobCell} ${acceptTermsCell}</tr>`;
-   return row;
+     return `<tr>${nameCell} ${emailCell} ${passwordCell} ${dobCell} ${acceptTermsCell}</tr>`;
  }).join("\n");
 
   // Add headers even if there are no entries
@@ -38,8 +37,7 @@ const displayEntries = () => {
         </tr>${tableEntries}
     </table>`;
 
-  let details=document.getElementById("user-entries");
-details.innerHTML = table;
+document.getElementById("user-entries").innerHTML = table;
 
 };
 
