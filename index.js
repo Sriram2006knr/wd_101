@@ -1,8 +1,14 @@
 const retrieveEntries = () => {
   let entries = localStorage.getItem("user-entries");
   if (entries) {
-    return JSON.parse(entries);
+    try {
+      return JSON.parse(entries);
+    } catch (error) {
+      console.error("Error parsing entries from localStorage:", error);
+      return []; 
+    }
   }
+
   return [];
 };
 const displayEntries = () => {
