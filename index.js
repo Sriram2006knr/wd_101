@@ -18,7 +18,7 @@ const displayEntries = () => {
             <td class="border px-4 py-2">${entry.email}</td>
             <td class="border px-4 py-2">${entry.password}</td>
             <td class="border px-4 py-2">${entry.dob}</td>
-            <td class="border px-4 py-2">${entry.acceptedTermsAndConditions ? 'True' : 'False'}</td>
+            <td class="border px-4 py-2">${entry.acceptedTermsAndConditions ? 'true' : 'false'}</td>
         </tr>
     `).join("");
 
