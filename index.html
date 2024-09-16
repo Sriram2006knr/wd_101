@@ -14,7 +14,7 @@
             <form id="user-form">
                 <div class="mb-4">
                     <label for="name" class="block text-sm font-medium text-gray-600">Name</label>
-                    <input type="text" id="name" name="name" class="mt-1 p-2 w-full border rounded-md" placeholder="Enter your name" required>
+                    <input type="text" id="name" name="name" class="mt-1 p-2 w-full border rounded-md" placeholder="Enter your full name" required>
                 </div>
                 <div class="mb-4">
                     <label for="email" class="block text-sm font-medium text-gray-600">Email</label>
@@ -26,13 +26,14 @@
                 </div>
                 <div class="mb-4">
                     <label for="dob" class="block text-sm font-medium text-gray-600">Date of Birth</label>
-                    <input type="date" id="dob" name="dob" class="mt-1 p-2 w-full border rounded-md" required>
+                    <input type="date" id="dob" name="dob" class="mt-1 p-2 w-full border rounded-md" placeholder="dd/mm/yyyy" required>
                 </div>
                 <div class="mb-4 flex items-center">
                     <input type="checkbox" id="acceptTerms" name="acceptTerms" class="mr-2" required>
                     <label for="acceptTerms" class="text-sm font-medium text-gray-600">Accept Terms & Conditions</label>
                 </div>
-                <button type="submit" class="bg-blue-500 text-white p-3 w-full rounded-md mt-3">Register</button>
+                <!-- Modify button to match screenshot's green button -->
+                <button type="submit" class="bg-green-500 text-white p-3 w-full rounded-md mt-3">Submit</button>
             </form>
             <h2 class="text-2xl text-center font-semibold mt-10 mb-6">Entries</h2>
             <table id="entriesTable" class="table-auto w-full border-collapse border border-gray-300">
