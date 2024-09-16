@@ -18,7 +18,7 @@ const displayEntries = () => {
         const emailCell = `<td class="border px-4 py-2">${entry.email}</td>`;
         const passwordCell = `<td class="border px-4 py-2">${entry.password}</td>`;
         const dobCell = `<td class="border px-4 py-2">${entry.dob}</td>`;
-        const acceptTermsCell = `<td class="border px-4 py-2">${entry.acceptedTermsAndConditions ? 'Yes' : 'No'}</td>`;
+        const acceptTermsCell = `<td class="border px-4 py-2">${entry.acceptedTermsAndConditions ? 'True' : 'False'}</td>`;
 
         const row = `<tr>${nameCell}${emailCell}${passwordCell}${dobCell}${acceptTermsCell}</tr>`;
         return row;
